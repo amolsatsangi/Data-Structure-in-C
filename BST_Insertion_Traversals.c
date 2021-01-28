@@ -1,4 +1,4 @@
-//Program  for insertion and in-order traversal in a binary  search tree
+//Program  for insertion, in-order ,pre-order and Post-order traversal in a binary  search tree
 #include<stdio.h>
 #include<stdlib.h>
 struct node{
@@ -59,6 +59,28 @@ void INORDER(struct node * root)
         INORDER(root->right);
     }
 }
+void POSTORDER(struct node *root)
+{
+    if(root==NULL)
+    {}
+    else
+    {
+        POSTORDER(root->left);
+        POSTORDER(root->right);
+        printf("%d -> ",root->key);
+    }
+}
+
+void PREORDER(struct node * root)
+{
+    if(root==NULL){}
+    else
+    {
+        printf("%d -> ",root->key);
+        POSTORDER(root->left);
+        POSTORDER(root->right);
+    }
+}
 void main()
 {
     int choice;
@@ -66,9 +88,11 @@ void main()
     printf("****Binary Search Tree creation, In-order traversal.****\n");
     while(1)
     {
-        printf("1)Insert a node\n");
-        printf("2)In-order traversal\n");
-        printf("3)Exit\n");
+        printf("1.Insert a node\n");
+        printf("2.In-order traversal\n");
+        printf("3.Pre-order Traversal\n");
+        printf("4.Post-order Traversal.\n");
+        printf("5.Exit\n");
         printf("Enter your choice\n");
         scanf("%d",&choice);
         switch(choice)
@@ -85,7 +109,26 @@ void main()
                         printf("\n");
                     }
                    break;
-            case 3:exit(0);
+            case 3:if(root==NULL)
+                    {
+                        printf("The tree is empty.\n");
+                    }
+                    else
+                    {
+                        PREORDER(root);
+                        printf("\n");
+                    }
+                    break;
+            case 4:  if(root==NULL)
+                    {
+                        printf("The tree id empty.\n");
+                    }
+                    else
+                    {
+                        POSTORDER(root);
+                        printf("\n");
+                    }
+            case 5:exit(0);
             default:printf("Wrong value");
         }
     }
